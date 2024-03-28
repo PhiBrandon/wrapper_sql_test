@@ -21,7 +21,7 @@ def main():
     Settings.llm = llm
 
     # postgresql://userame:password@localhost:5432/database_name
-    engine = create_engine("# postgresql://userame:password@localhost:5432/database_name")
+    engine = create_engine("postgresql://userame:password@localhost:5432/database_name")
     metadata_obj = MetaData()
 
     sql_db = SQLDatabase(engine, include_tables=["jobdata"])
@@ -59,7 +59,9 @@ def main():
     for q in questions:
         get_response(q)
 
-    follow_up = query_engine.query("Where are the openings for Azure Data Engineer located?")
+    follow_up = query_engine.query(
+        "Where are the openings for Azure Data Engineer located?"
+    )
     print(follow_up)
     """ response_2 = query_engine.query(
         f"What are the job titles for these ids: {str(response.metadata['result'])}"

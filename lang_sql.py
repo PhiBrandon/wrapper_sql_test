@@ -18,7 +18,9 @@ class SQLResponse(BaseModel):
 
 def main():
     # # postgresql://userame:password@localhost:5432/database_name
-    db = SQLDatabase.from_uri("# postgresql://userame:password@localhost:5432/database_name")
+    db = SQLDatabase.from_uri(
+        "postgresql://userame:password@localhost:5432/database_name"
+    )
 
     # Initialize the model
     model = ChatAnthropic(model="claude-3-haiku-20240307")
@@ -43,11 +45,11 @@ def main():
         "What is the most common job position in the table?",
         "What is the average length of the job descriptions?",
         "Are there any job descriptions that contain specific keywords, such as 'remote', 'data', or 'healthcare'?",
-        #"How many job postings were made today, and how does that compare to previous days?",
-        #"What is the oldest job posting in the table, and how long ago was it posted?",
+        # "How many job postings were made today, and how does that compare to previous days?",
+        # "What is the oldest job posting in the table, and how long ago was it posted?",
         "Is there a correlation between the length of the job description and the location of the job?",
         "Are there any job positions that are more likely to be remote compared to others?",
-        #"What is the distribution of job postings across different days of the week?",
+        # "What is the distribution of job postings across different days of the week?",
         "Are there any patterns in the job IDs, such as specific prefixes or suffixes?",
         "What is the average number of words in the job position names?",
         "Are there any job positions that have multiple openings listed in the table?",
@@ -73,10 +75,9 @@ def main():
         # print(valid_query.sql_query)
         query_output_1 = db.run(valid_query.sql_query)
         print(query_output_1)
+
     for q in questions:
         get_response(q)
-
-
 
     response_followup = chain.invoke(
         {
